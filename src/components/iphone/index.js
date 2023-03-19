@@ -60,11 +60,34 @@ export default class Iphone extends Component {
 		var temp_c = parsed_json['main']['temp'];
 		var conditions = parsed_json['weather']['0']['description'];
 
+		if ('rain' in parsed_json) {
+			if ('1h' in parsed_json['rain']) {
+				var rain_1 = parsed_json['rain']['1h'];
+			}
+			if ('3h' in parsed_json['rain']) {
+				var rain_2 = parsed_json['rain']['3h'];
+			}
+		} else {
+			var rain_1 = 0;
+			var rain_2 = 0;
+		}
+		var wind = parsed_json['wind']['speed'];
+		var wind_deg = parsed_json['wind']['deg'];
+		var humidity = parsed_json['main']['humidity'];
+		var pressure = parsed_json['main']['pressure'];
+
+
 		// set states for fields so they could be rendered later on
 		this.setState({
 			locate: location,
 			temp: temp_c,
-			cond : conditions
+			cond : conditions,
+			rain : rain_1,
+			rain3h : rain_2,
+			wSpeed : wind,
+			wDir : wind_deg,
+			humid : humidity,
+			psi : pressure
 		});
 	}
 }
