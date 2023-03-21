@@ -57,6 +57,12 @@ export default class Iphone extends Component {
 				</div>
 			</div>
 		);
+		/*TODO
+		- For Header add side menu, and location with changing
+		- Subheader with weather alert
+		- Main element, static for now add dynamics later
+		- upcoming and details subelements
+		 */
 	}
 
 	parseResponse = (parsed_json) => {
