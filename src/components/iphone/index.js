@@ -7,7 +7,10 @@ import style_iphone from '../button/style_iphone';
 import $ from 'jquery';
 // import the Button component
 import Button from '../button';
-
+import codes from '../../assets/wmocodes.json';
+//Notes:
+//Changed API call, check if it actually works
+//Same with adding in WMO weather codes
 export default class Iphone extends Component {
 //var Iphone = React.createClass({
 
@@ -23,10 +26,11 @@ export default class Iphone extends Component {
 	// a call to fetch weather data via wunderground
 	fetchWeatherData = () => {
 		// API URL with a structure of : ttp://api.wunderground.com/api/key/feature/q/country-code/city.json
-		var url = "http://api.openweathermap.org/data/2.5/weather?q=London&units=metric&APPID=3433317211f5f05d30c5f4a41a16cd4e";
+		var newurl="https://api.open-meteo.com/v1/forecast?latitude=51.53&longitude=-0.04&forecast_days=1&hourly=temperature_2m,weathercode";
+		
 		$.ajax({
-			url: url,
-			dataType: "jsonp",
+			url: newurl,
+			dataType: "json",
 			success : this.parseResponse,
 			error : function(req, err){ console.log('API call failed ' + err); }
 		})
@@ -56,9 +60,11 @@ export default class Iphone extends Component {
 	}
 
 	parseResponse = (parsed_json) => {
-		var location = parsed_json['name'];
-		var temp_c = parsed_json['main']['temp'];
-		var conditions = parsed_json['weather']['0']['description'];
+		console.log(parsed_json);
+		var hour = (new Date).getHours();
+		var location = "Current Location";
+		var temp_c = parsed_json["hourly"]['temperature_2m'][hour];
+		var conditions = codes[parsed_json['hourly']['weathercode'][hour]];
 
 		// set states for fields so they could be rendered later on
 		this.setState({
