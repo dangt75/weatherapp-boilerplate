@@ -54,7 +54,7 @@
     "karma-webpack": "^2.0.1",
     "less": "^2.7.1",
     "less-loader": "^2.2.3",
-    "mkdirp": "^0.5.1",
+    "mkdirp": "^2.1.5",
     "mocha": "^3.0.0",
     "ncp": "^2.0.0",
     "offline-plugin": "^4.5.3",
@@ -73,6 +73,7 @@
     "webpack-dev-server": "^1.15.0"
   },
   "dependencies": {
+    "caniuse-db": "^1.0.30001467",
     "preact": "^6.0.0",
     "preact-compat": "^3.0.0",
     "preact-router": "^2.0.0",
