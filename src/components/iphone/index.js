@@ -7,10 +7,10 @@ import style_iphone from '../button/style_iphone';
 import $ from 'jquery';
 // import the Button component
 import Button from '../button';
+//import WMO Weather Codes
 import codes from '../../assets/wmocodes.json';
-//Notes:
-//Changed API call, check if it actually works
-//Same with adding in WMO weather codes
+//import Header Bar for location change and menu navigation
+import TopBar from '../topbar';
 export default class Iphone extends Component {
 //var Iphone = React.createClass({
 
@@ -46,6 +46,7 @@ export default class Iphone extends Component {
 		// display all weather data
 		return (
 			<div class={ style.container }>
+				<TopBar/>
 				<div class={ style.header }>
 					<div class={ style.city }>{ this.state.locate }</div>
 					<div class={ style.conditions }>{ this.state.cond }</div>
@@ -53,16 +54,10 @@ export default class Iphone extends Component {
 				</div>
 				<div class={ style.details }></div>
 				<div class= { style_iphone.container }>
-					{ this.state.display ? <Button class={ style_iphone.button } clickFunction={ this.fetchWeatherData }/ > : null }
+					{ this.state.display ? <Button class={ style_iphone.button } clickFunction={ this.fetchWeatherData } text="Display Weather"/> : null }
 				</div>
 			</div>
 		);
-		/*TODO
-		- For Header add side menu, and location with changing
-		- Subheader with weather alert
-		- Main element, static for now add dynamics later
-		- upcoming and details subelements
-		 */
 	}
 
 	parseResponse = (parsed_json) => {

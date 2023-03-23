@@ -1,0 +1,165 @@
+//@import "reset.css";
+//@import "newreset.css";
+@import (css) url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;1,700&family=Oxygen+Mono&family=Roboto&display=swap');
+
+.header{
+	position: absolute;
+	display: flex;
+	height: 10vh;
+	top:0;
+	left:0;
+  }
+
+nav{
+	font-family: Montserrat, sans-serif;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 0;
+	height: 100vh;
+	background-color: rgba(0,0,0,0.5);
+	z-index: 1;
+	overflow-x: hidden;
+	overflow-y: hidden;
+	transition: 0.5s;
+
+	ul{
+		list-style: none;
+		margin: 1em;
+		padding:0;
+	}
+
+	li{
+		padding-top: 0.3em;
+		font-size: 1.5em;
+		text-overflow: clip;
+	}
+
+	a{
+		text-decoration: none;
+		color: lightgray;
+		transition: 0.3s;
+		text-overflow: clip;
+	}
+
+	a:hover{
+		color: white;
+	}
+}
+
+.navopen{
+	width:15em;
+}
+
+.brand{
+	font-size: 24pt;
+	font-weight:bold;
+	padding-top: 0;
+}
+
+.openbutton{
+	text-decoration: none;
+	font-size: 24pt;
+	margin: 0.3em;
+	background: none;
+	border: 0;
+	transition: 0.3s;
+	transition-delay: 0.2s;
+	color: rgb(255, 255, 255);
+}
+
+.openbuttonopen{
+	transition:0.2s;
+	transition-delay:0s;
+	color:rgba(255, 255, 255, 0)
+}
+
+.closebutton{
+	text-decoration: none;
+	position: absolute;
+	top:0;
+	right: 0;
+	background: none;
+	border: none;
+	font-size: 16pt;
+	color: lightgray;
+	transition: 0.3s;
+}
+
+.closebutton:hover{
+	color: white;
+}
+
+.location{
+	font-family: Montserrat, sans-serif;
+	display: flex;
+	flex-direction: column;
+	width:auto;
+	position: relative;
+	left: 20%;
+	top: 15%;
+}
+
+.locname{
+	width: 5em;
+	height: auto;
+	text-align: center;
+	font-size: 2em;
+}
+
+.locpicker{
+	all:unset;
+	color: #FFFFFF;
+	width: 1em;
+	height: 2em;
+	padding-left: 0.3em;
+	padding-top: 0.16em;
+}
+
+.locpicker img{
+	width: 2em;
+	height: auto;
+	/*this one is stupid, replace icon with white version later*/
+	-webkit-filter: invert(100%);
+}
+
+.loctop{
+	display: flex;
+	flex-direction: row;
+}
+
+.locul{
+	padding: 0 6px;
+	max-height: 0;
+	width: 100%;
+	overflow: hidden;
+	transition: max-height 0.2s ease-out;
+	scrollbar-width: none;
+	-ms-overflow-style: none;
+}
+
+.loculopen{
+	overflow: scroll;
+	max-height:6em;
+}
+
+.locul::-webkit-scrollbar{
+	display: none;
+}
+
+.loca{
+	unset:all;
+	text-decoration: none;
+	font-size: 1.5em;
+	color: #FFFFFF;
+	background-color: rgba(0,0,0,0.5);
+	display: block;
+	padding-top: 0.1em;
+	padding-bottom: 0.1em;
+	transition: 0.3s;
+
+}
+
+.loca:hover{
+	background-color: rgba(0,0,0,1);
+}
