@@ -33,29 +33,25 @@ export default class Iphone extends Component {
 		}
 	}
 
-	// a call to fetch weather data via wunderground
 	fetchWeatherData = () => {
 		// API URL with a structure of : ttp://api.wunderground.com/api/key/feature/q/country-code/city.json
-		var newurl="https://api.open-meteo.com/v1/forecast?latitude=51.53&longitude=-0.04&forecast_days=1&hourly=temperature_2m,weathercode";
-
+		var url = "http://api.openweathermap.org/data/2.5/weather?q=Manchester&units=metric&APPID=3433317211f5f05d30c5f4a41a16cd4e";
 		$.ajax({
-			url: newurl,
-			dataType: "json",
+			url: url,
+			dataType: "jsonp",
 			success : this.parseResponse,
 			error : function(req, err){ console.log('API call failed ' + err); }
 		})
 		// once the data grabbed, hide the button
 		this.setState({ display: false });
 	}
-
-	// a call to fetch weather data via wunderground
 	fetchForecastData = () => {
 		// API URL with a structure of : ttp://api.wunderground.com/api/key/feature/q/country-code/city.json
 		var url = "http://api.openweathermap.org/data/2.5/forecast?q=Manchester&units=metric&APPID=3433317211f5f05d30c5f4a41a16cd4e";
 		$.ajax({
-			url2: url,
-			dataType2: "jsonp",
-			success2 : this.parseForecastResponse,
+			url: url,
+			dataType: "jsonp",
+			success : this.parseForecastResponse,
 			error : function(req, err){ console.log('API call failed ' + err); }
 		})
 		// once the data grabbed, hide the button
@@ -112,44 +108,19 @@ export default class Iphone extends Component {
 		}
 	}
 
-
 	parseResponse = (parsed_json) => {
-		console.log(parsed_json);
-		var hour = (new Date).getHours();
-		var location = "Current Location";
-		var temp_c = parsed_json["hourly"]['temperature_2m'][hour];
-		var conditions = codes[parsed_json['hourly']['weathercode'][hour]];
-
-		if ('rain' in parsed_json) {
-			if ('1h' in parsed_json['rain']) {
-				var rain_1 = parsed_json['rain']['1h'];
-			}
-			if ('3h' in parsed_json['rain']) {
-				var rain_2 = parsed_json['rain']['3h'];
-			}
-		} else {
-			var rain_1 = 0;
-			var rain_2 = 0;
-		}
-		var wind = parsed_json['wind']['speed'];
-		var wind_deg = parsed_json['wind']['deg'];
-		var humidity = parsed_json['main']['humidity'];
-		var pressure = parsed_json['main']['pressure'];
-
+		var location = parsed_json['name'];
+		var temp_c = parsed_json['main']['temp'].toFixed();
+		var conditions = parsed_json['weather']['0']['description'];
 
 		// set states for fields so they could be rendered later on
 		this.setState({
 			locate: location,
 			temp: temp_c,
-			cond : conditions,
-			rain : rain_1,
-			rain3h : rain_2,
-			wSpeed : wind,
-			wDir : wind_deg,
-			humid : humidity,
-			psi : pressure
+			cond : conditions
 		});
 	}
+
 
 	parseForecastResponse = (parsed_json) => {
 		var foreCast_temp_c1 = parsed_json['list'][1]['main']['temp'].toFixed() + " °";

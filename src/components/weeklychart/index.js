@@ -26,8 +26,8 @@ export default class WeeklyChart extends Component {
 
 	fetchWeeklyData = () => {
 		// API URL with a structure of : ttp://api.wunderground.com/api/key/feature/q/country-code/city.json
-		var newurl="https://api.open-meteo.com/v1/forecast?latitude=51.53&longitude=-0.04&forecast_days=8&hourly=weathercode&daily=temperature_2m_max,temperature_2m_min,rain_sum&timezone=auto";
-		
+		var newurl="https://api.open-meteo.com/v1/forecast?latitude=39.1&longitude=-84.51&forecast_days=8&hourly=weathercode&daily=temperature_2m_max,temperature_2m_min,rain_sum&timezone=auto";
+
 		$.ajax({
 			url: newurl,
 			dataType: "json",
@@ -39,7 +39,7 @@ export default class WeeklyChart extends Component {
 	}
 
 	parseWeeklyResponse = (parsed_json) => {
-		var weekday=["M","T","W","T","F","S","S"];
+		var weekday=["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
 		var tday = (new Date).getDay();
 		var weekdays=[];
 		var hours = [13];
@@ -110,7 +110,6 @@ export default class WeeklyChart extends Component {
 						<div class={weeklystyle.day}>{this.state.days[4]}</div>
 						<div class={weeklystyle.day}>{this.state.days[5]}</div>
 						<div class={weeklystyle.day}>{this.state.days[6]}</div>
-						<div class={weeklystyle.day}>{this.state.days[7]}</div>
 					</div>
 					<div class={weeklystyle.main}>
 						<div class={classNames(weeklystyle.reading,[`${this.state.avgp[0]}`])}>
@@ -141,13 +140,9 @@ export default class WeeklyChart extends Component {
 							<div class={weeklystyle.cond}><img src={'../../assets/icons/'+this.state.avgc[6]+'.png'}></img></div>
 							<div class={weeklystyle.temp}>{this.state.avgt[6]+" °"}</div>
 						</div>
-						<div class={classNames(weeklystyle.reading,weeklystyle.alt,[`${this.state.avgp[7]}`])}>
-							<div class={weeklystyle.cond}><img src={'../../assets/icons/'+this.state.avgc[7]+'.png'}></img></div>
-							<div class={weeklystyle.temp}>{this.state.avgt[7]+" °"}</div>
-						</div>
 					</div>
 				</div>
-			);	
+			);
 		}
 
 	}

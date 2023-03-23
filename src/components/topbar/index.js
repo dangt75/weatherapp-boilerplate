@@ -6,7 +6,7 @@ import style from './nav';
 import classNames from 'classnames';
 
 export default class TopBar extends Component {
-	
+
 	constructor(){
 		super();
 		//determines sidebar presence
@@ -39,7 +39,7 @@ export default class TopBar extends Component {
 			this.setState({page:newpage})
 		}
 	}
-	
+
 	// rendering a sidebar and location picker
 	//first is navigation, with a button that opens the sidebar, and then links, and a button to close it
 	//after that is a location display with a dropdown button, with a list of other locations to pick. picked locations update the display
@@ -52,12 +52,12 @@ export default class TopBar extends Component {
 						<button class={style.closebutton} onClick={this.closeMenu}>⛌</button>
 					<ul>
 						<li class={style.brand}><a href="#">Weather App</a></li>
-						<li><a onClick={() => this.changePage("main")} href='javascript:void(0)'>Today</a></li>
-						<li><a onClick={() => this.changePage("weekly")} href='javascript:void(0)'>Weekly</a></li>
-						<li><a onClick={() => this.changePage("alerts")} href='javascript:void(0)'>Alerts</a></li>
-						<li><a onClick={() => this.changePage("settings")} href='javascript:void(0)'>Settings</a></li>
+						<li><a onClick={() => this.changePage("main")} href='/index'>Today</a></li>
+						<li><a onClick={() => this.changePage("weekly")} href='/weekly'>Weekly</a></li>
+						{/*<li><a onClick={() => this.changePage("alerts")} href='javascript:void(0)'>Alerts</a></li>*/}
+						<li><a onClick={() => this.changePage("settings")} href='/settings'>Settings</a></li>
 					</ul>
-					</nav>	  
+					</nav>
 				</div>
 				<div class={style.location}>
 					<div class={style.loctop}>
@@ -68,7 +68,7 @@ export default class TopBar extends Component {
 							<img src='../../assets/icons/down-arrow.png'></img>
 						</button>
 					</div>
-					
+
 					<ul class={classNames(style.locul,{[`${style.loculopen}`] : this.state.loc})} id={style.locations}>
 						<li><a class={style.loca} onClick={() => this.changeLoc("loc1")} href='javascript:void(0)'>loc1</a></li>
 						<li><a class={style.loca} onClick={() => this.changeLoc("loc2")} href='javascript:void(0)'>loc2</a></li>
@@ -76,7 +76,7 @@ export default class TopBar extends Component {
 					</ul>
 				</div>
 			</div>
-	
+
 		);
 	}
 }
