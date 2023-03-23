@@ -51,7 +51,7 @@ export default class TopBar extends Component {
 					<nav class={classNames(style.nav,{[`${style.navopen}`] : this.state.menu})}>
 						<button class={style.closebutton} onClick={this.closeMenu}>⛌</button>
 					<ul>
-						<li class={style.brand}><a href="#">Weather App</a></li>
+						<li class={style.brand}><a href="#">Farmy</a></li>
 						<li><a onClick={() => this.changePage("main")} href='/index'>Today</a></li>
 						<li><a onClick={() => this.changePage("weekly")} href='/weekly'>Weekly</a></li>
 						{/*<li><a onClick={() => this.changePage("alerts")} href='javascript:void(0)'>Alerts</a></li>*/}
