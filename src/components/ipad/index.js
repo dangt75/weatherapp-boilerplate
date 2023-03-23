@@ -50,7 +50,7 @@ export default class Ipad extends Component {
 				</div>
 				<div class={ style.details }></div>
 				<div class={ style_ipad.container }>
-					{ this.state.display ? <Button class={ style_ipad.button } clickFunction={ this.fetchWeatherData }/ > : null }
+					{ this.state.display ? <Button class={ style_ipad.button } clickFunction={ this.fetchWeatherData } text="Display Weather"/ > : null }
 				</div>
 			</div>
 		);
