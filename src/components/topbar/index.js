@@ -14,7 +14,7 @@ export default class TopBar extends Component {
 		//determines location dropdown presence
 		this.state={loc:false};
 		//determines location selected
-		this.state={location: "Ohio"}
+		this.state={location: "Ohio"};
 	}
 
 	//it's self-evident what these functions do
@@ -31,7 +31,13 @@ export default class TopBar extends Component {
 	}
 
 	changeLoc = (loc) => {
-		this.setState({location:loc})
+		this.setState({location:loc});
+	}
+	//doesn't work, check main page for how work later
+	changePage = (newpage) => {
+		if (newpage=="main" || newpage=="weekly"){
+			this.setState({page:newpage})
+		}
 	}
 	
 	// rendering a sidebar and location picker
@@ -46,10 +52,10 @@ export default class TopBar extends Component {
 						<button class={style.closebutton} onClick={this.closeMenu}>⛌</button>
 					<ul>
 						<li class={style.brand}><a href="#">Weather App</a></li>
-						<li><a href="#">Today</a></li>
-						<li><a href="#">Weekly</a></li>
-						<li><a href="#">Alerts</a></li>
-						<li><a href="#">Settings</a></li>
+						<li><a onClick={() => this.changePage("main")} href='javascript:void(0)'>Today</a></li>
+						<li><a onClick={() => this.changePage("weekly")} href='javascript:void(0)'>Weekly</a></li>
+						<li><a onClick={() => this.changePage("alerts")} href='javascript:void(0)'>Alerts</a></li>
+						<li><a onClick={() => this.changePage("settings")} href='javascript:void(0)'>Settings</a></li>
 					</ul>
 					</nav>	  
 				</div>
