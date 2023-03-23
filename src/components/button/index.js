@@ -13,8 +13,8 @@ export default class Button extends Component {
 		}
 		return (
 			<div>
-				<button onClick={cFunction}>
-					Display Weather
+				<button class={this.props.class} onClick={cFunction}>
+					{this.props.text}
 				</button>
 			</div>
 		);

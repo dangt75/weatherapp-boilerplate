@@ -1,0 +1,116 @@
+nav{
+	font-family: Montserrat, sans-serif;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 0;
+	height: 100%;
+	background-color: rgba(0,0,0,0.5);
+	z-index: 1;
+	overflow-x: hidden;
+	transition: 0.5s;
+
+	ul{
+		list-style: none;
+		margin: 2em;
+	}
+
+	li{
+		padding-top: 1em;
+		font-size: 25pt;
+		text-overflow: clip;
+	}
+
+	a{
+		text-decoration: none;
+		color: lightgray;
+		transition: 0.3s;
+		text-overflow: clip;
+
+		:hover{
+			color: white;
+		}
+	}
+}
+
+.location{
+	font-family: Montserrat, sans-serif;
+	display: block;
+	width:auto;
+	position: absolute;
+	left: 50%;
+	top:25%;
+
+	.top{
+		display: flex;
+	}
+
+	.locname{
+		font-size: 3em;
+	}
+
+	.locpicker{
+		all:unset;
+		width: 3em;
+		height: auto;
+		padding-left: 1em;
+		padding-top: 0.5em;
+	}
+  
+	ul{
+		padding: 0 18px;
+		max-height: 0;
+		overflow: hidden;
+		transition: max-height 0.2s ease-out;
+	}
+
+	a{
+		text-decoration: none;
+		font-size: 2em;
+		color: #000;
+		display: block;
+
+		:hover{
+			background-color: #DDDDDD;
+		}
+	}
+}
+
+footer{
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	padding: 2em;
+	font-family: "Roboto";
+	font-size: 15pt;
+	width: calc(100% - 4em);
+}
+
+.brand{
+	font-size: 35pt;
+	font-weight:bold;
+	padding-top: 0;
+}
+
+#openbutton{
+	font-size: 35pt;
+	margin: 1em;
+	background: none;
+	border: 0;
+	transition: 0.3s;
+}
+
+#closebutton{
+	position: absolute;
+	top:0;
+	right: 0;
+	background: none;
+	border: none;
+	font-size: 25pt;
+	color: lightgray;
+	transition: 0.3s;
+
+	:hover{
+		color: white;
+	}
+}
