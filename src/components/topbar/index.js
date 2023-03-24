@@ -14,7 +14,7 @@ export default class TopBar extends Component {
 		//determines location dropdown presence
 		this.state={loc:false};
 		//determines location selected
-		this.state={location: "Ohio"};
+		this.state={location: "Main Plot"};
 	}
 
 	//it's self-evident what these functions do
@@ -54,8 +54,6 @@ export default class TopBar extends Component {
 						<li class={style.brand}><a href="#">Farmy</a></li>
 						<li><a onClick={() => this.changePage("main")} href='/index'>Today</a></li>
 						<li><a onClick={() => this.changePage("weekly")} href='/weekly'>Weekly</a></li>
-						{/*<li><a onClick={() => this.changePage("alerts")} href='javascript:void(0)'>Alerts</a></li>*/}
-						<li><a onClick={() => this.changePage("settings")} href='/settings'>Settings</a></li>
 					</ul>
 					</nav>
 				</div>
@@ -70,9 +68,9 @@ export default class TopBar extends Component {
 					</div>
 
 					<ul class={classNames(style.locul,{[`${style.loculopen}`] : this.state.loc})} id={style.locations}>
-						<li><a class={style.loca} onClick={() => this.changeLoc("loc1")} href='javascript:void(0)'>loc1</a></li>
-						<li><a class={style.loca} onClick={() => this.changeLoc("loc2")} href='javascript:void(0)'>loc2</a></li>
-						<li><a class={style.loca} onClick={() => this.changeLoc("loc3")} href='javascript:void(0)'>loc3</a></li>
+						<li><a class={style.loca} onClick={() => this.changeLoc("Carrots")} href='javascript:void(0)'>loc1</a></li>
+						<li><a class={style.loca} onClick={() => this.changeLoc("Barley")} href='javascript:void(0)'>loc2</a></li>
+						<li><a class={style.loca} onClick={() => this.changeLoc("Apples")} href='javascript:void(0)'>loc3</a></li>
 					</ul>
 				</div>
 			</div>

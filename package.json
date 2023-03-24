@@ -84,6 +84,7 @@
     "preact-router": "^2.0.0",
     "promise-polyfill": "^6.0.2",
     "proptypes": "^0.14.3",
+    "redux": "^4.2.1",
     "serve": "^2.0.0"
   },
   "main": "webpack.config.babel.js",
