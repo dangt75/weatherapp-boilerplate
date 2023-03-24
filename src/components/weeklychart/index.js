@@ -10,11 +10,11 @@ import Button from '../button';
 import style_iphone from '../button/style_iphone';
 import $ from 'jquery';
 import codes from '../../assets/wmocodes.json';
-
+import coords from '../../assets/coords.json';
 export default class WeeklyChart extends Component {
 
 	constructor(props){
-		super();
+		super(props);
 		this.setState({display:true});
 		this.setState({temp:""});
 		this.setState({days:[]});
@@ -24,10 +24,15 @@ export default class WeeklyChart extends Component {
 		//this.parseWeeklyResponse(data);
 	}
 
+	componentDidMount(){
+		this.setState({location : this.props.other.current.state.location});
+
+	}
+
 	fetchWeeklyData = () => {
 		// API URL with a structure of : ttp://api.wunderground.com/api/key/feature/q/country-code/city.json
-		var newurl="https://api.open-meteo.com/v1/forecast?latitude=39.1&longitude=-84.51&forecast_days=8&hourly=weathercode&daily=temperature_2m_max,temperature_2m_min,rain_sum&timezone=auto";
-		console.log(this.other.state.location);
+		console.log(this.state.location);
+		var newurl="https://api.open-meteo.com/v1/forecast?latitude="+coords[this.state.location][0]+"&longitude="+coords[this.state.location][1]+"&forecast_days=8&hourly=weathercode&daily=temperature_2m_max,temperature_2m_min,rain_sum&timezone=auto";
 		$.ajax({
 			url: newurl,
 			dataType: "json",
@@ -65,7 +70,6 @@ export default class WeeklyChart extends Component {
 			weekdays.push(weekday[tday])
 			tday=(tday+1)%7
 		}
-		console.log(conditions);
 		//ugly, refactor later
 		var classes=[weeklystyle.zero,weeklystyle.one,weeklystyle.two,weeklystyle.three,weeklystyle.four,weeklystyle.five,weeklystyle.six,weeklystyle.seven,weeklystyle.eight,weeklystyle.nine,weeklystyle.ten];
 		var padding=[];

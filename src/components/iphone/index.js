@@ -33,6 +33,11 @@ export default class Iphone extends Component {
 			this.setState({page:"main"});
 		}
 		this.location=createRef();
+		this.newloc=this.newloc.bind(this);
+	}
+
+	newloc(){
+		return this.location.current.state.location;
 	}
 
 	fetchWeatherData = () => {
@@ -50,7 +55,7 @@ export default class Iphone extends Component {
 	}
 	fetchForecastData = () => {
 		// API URL with a structure of : ttp://api.wunderground.com/api/key/feature/q/country-code/city.json
-		var url = "http://api.openweathermap.org/data/2.5/forecast?q=Manchester&units=metric&APPID=3433317211f5f05d30c5f4a41a16cd4e";
+		var url = "http://api.openweathermap.org/data/2.5/forecast?q="+this.location.current.state.location+"=metric&APPID=3433317211f5f05d30c5f4a41a16cd4e";
 		$.ajax({
 			url: url,
 			dataType: "jsonp",
@@ -70,7 +75,7 @@ export default class Iphone extends Component {
 			return(
 				<div class={style.container}>
 					<TopBar ref={this.location}/>
-					<WeeklyChart/>
+					<WeeklyChart other={this.location}/>
 				</div>
 			);
 		}
