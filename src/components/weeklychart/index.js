@@ -15,12 +15,12 @@ export default class WeeklyChart extends Component {
 
 	constructor(){
 		super();
-		this.state.display=true;
-		this.state.temp = "";
-		this.state.days = [];
-		this.state.avgt = [];
-		this.state.avgc = [];
-		this.state.avgp = [];
+		this.setState({display:true});
+		this.setState({temp:""});
+		this.setState({days:[]});
+		this.setState({avgt:[]});
+		this.setState({avgc:[]});
+		this.setState({avgp:[]});
 		//this.parseWeeklyResponse(data);
 	}
 

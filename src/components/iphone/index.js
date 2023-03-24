@@ -22,7 +22,7 @@ export default class Iphone extends Component {
 		const urlBar = window.location.href;
 		super(props);
 		// temperature state
-		this.state.temp = "";
+		this.setState({temp:""});
 		// button display state
 		this.setState({ display: true });
 		if(urlBar.includes("weekly")){
@@ -121,7 +121,7 @@ export default class Iphone extends Component {
 					<h2>Details</h2>
 					<div class = {style.info}>
 						<div class = {style.wind}>
-							<p><img src="../../assets/icons/wind.svg" alt=""/></p>
+							<p><img class={style.icon5} src="../../assets/icons/wind.svg" alt=""/></p>
 							<hr/>
 							<div class = {style.index}>
 								<p>Speed</p>
@@ -135,7 +135,7 @@ export default class Iphone extends Component {
 						</div>
 						<hr/>
 						<div class = {style.water}>
-							<p><img src="../../assets/icons/rainDrop.svg" alt=""/></p>
+							<p><img class={style.icon5} src="../../assets/icons/rainDrop.svg" alt=""/></p>
 							<hr/>
 							<div class = {style.index}>
 								<p>Pressure</p>
