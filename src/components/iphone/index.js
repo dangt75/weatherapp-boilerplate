@@ -114,7 +114,7 @@ export default class Iphone extends Component {
 					</div>
 					<hr/>
 					<div class = {style.water}>
-						<p><img src="../../assets/icons/raindrop.svg" alt=""/></p>
+						<p><img src="../../assets/icons/rainDrop.svg" alt=""/></p>
 						<hr/>
 						<div class = {style.index}>
 							<p>Pressure</p>
@@ -161,6 +161,7 @@ export default class Iphone extends Component {
 	}
 
 	parseForecastResponse = (parsed_json) => {
+		// Forecast next 6 hours 
 		var foreCast_temp_c1 = parsed_json['list'][1]['main']['temp'].toFixed() + " °";
 		var dateTime1 = parsed_json['list'][1]['dt_txt'];
 		var dateArr1 = dateTime1.split(" ");
@@ -168,7 +169,7 @@ export default class Iphone extends Component {
 		var hour1 = Arr1[0];
 		var icon1 = "http://openweathermap.org/img/w/" + parsed_json['list'][1]['weather'][0]['icon'] + ".png";
 
-
+		// Forecast next 12 hours
 		var foreCast_temp_c2 = parsed_json['list'][3]['main']['temp'].toFixed() + " °";
 		var dateTime2 = parsed_json['list'][3]['dt_txt'];
 		var dateArr2 = dateTime2.split(" ");
@@ -176,6 +177,7 @@ export default class Iphone extends Component {
 		var hour2 = Arr2[0];
 		var icon2 = "http://openweathermap.org/img/w/" + parsed_json['list'][3]['weather'][0]['icon'] + ".png";
 
+		// Forecast next 18 hours
 		var foreCast_temp_c3 = parsed_json['list'][5]['main']['temp'].toFixed() + " °";
 		var dateTime3 = parsed_json['list'][5]['dt_txt'];
 		var dateArr3 = dateTime3.split(" ");
