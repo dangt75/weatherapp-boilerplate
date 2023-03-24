@@ -1,18 +1,16 @@
 @import '~style/helpers';
 
 .container {
-	position: relative;
-	display: flex;
-	flex-direction: column;
-	//background-image: url('../../assets/backgrounds/clear-iphone.jpg');
-	background-color: white;
-	color: #000;
-	width: 414px;
-	height: 736px;
-	text-align: center;
-	padding-top: 80px;
-	margin: 0 auto;
-	overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  color: #000;
+  width: 414px;
+  height: 736px;
+  text-align: center;
+  padding-top: 80px;
+  margin: 0 auto;
 }
 
 .header {
@@ -23,16 +21,44 @@
 .details {
 	display: flex;
 	justify-content: space-around;
-	margin-top: 100px;
+	margin-top: 10px;
+}
+
+.info {
+  display: flex;
+  justify-content: space-between;
+}
+
+.wind {
+
+  font-size: large;
+  flex-grow: 1;
+  margin-right: 5px;
+}
+
+.water {
+
+  font-size: large;
+  flex-grow: 1;
+  margin-left: 5px;
+}
+
+hr {
+  margin-top: 0;
 }
 
 .box{
 	width: 100px;
 	opacity: 1;
-	border: 1px solid green;
+  	background: rgba(0, 0, 0, 0.1);
 	border-radius: 12px;
 	padding: 1em;
 	font-size: large;
+}
+
+.index {
+  display: flex;
+  justify-content: space-between;
 }
 
 .city {
@@ -59,26 +85,4 @@
 	display: inline-block;
 	padding-top: 10px;
 	vertical-align: top;
-}
-
-.rain {
-	flex: 1;
-	font-size: 1.2em;
-	font-weight: 300;
-}
-
-.wind {
-  	flex: 1;
-	font-size: 1.2em;
-	font-weight: 300;
-}
-.humidity {
-	flex: 1;
-	font-size: 1.2em;
-	font-weight: 300;
-}
-.pressure {
-	flex: 1;
-	font-size: 1.2em;
-	font-weight: 300;
 }
