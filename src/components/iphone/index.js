@@ -7,11 +7,6 @@ import style_iphone from '../button/style_iphone';
 import $ from 'jquery';
 // import the Button component
 import Button from '../button';
-// import the font awesome icon component
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSun } from '@fortawesome/free-solid-svg-icons'
-import { faCloudRain } from '@fortawesome/free-solid-svg-icons'
-import { faMoon } from '@fortawesome/free-solid-svg-icons'
 
 
 export default class Iphone extends Component {
@@ -54,6 +49,21 @@ export default class Iphone extends Component {
 		this.setState({ display: false });
 	}
 
+	// Function to convert wind degree to wind direction
+	getCardinal(angle){
+		
+		const degreePerDirection = 360 / 8;
+		const offsetAngle = angle + degreePerDirection / 2;
+	  
+		return (offsetAngle >= 0 * degreePerDirection && offsetAngle < 1 * degreePerDirection) ? "N"
+		  : (offsetAngle >= 1 * degreePerDirection && offsetAngle < 2 * degreePerDirection) ? "NE"
+			: (offsetAngle >= 2 * degreePerDirection && offsetAngle < 3 * degreePerDirection) ? "E"
+			  : (offsetAngle >= 3 * degreePerDirection && offsetAngle < 4 * degreePerDirection) ? "SE"
+				: (offsetAngle >= 4 * degreePerDirection && offsetAngle < 5 * degreePerDirection) ? "S"
+				  : (offsetAngle >= 5 * degreePerDirection && offsetAngle < 6 * degreePerDirection) ? "SW"
+					: (offsetAngle >= 6 * degreePerDirection && offsetAngle < 7 * degreePerDirection) ? "W"
+					  : "NW";
+	}
 	// the main render method for the iphone component
 	render() {
 		// check if temperature data is fetched, if so add the sign styling to the page
@@ -67,22 +77,53 @@ export default class Iphone extends Component {
 					<div class={ style.conditions }>{ this.state.cond }</div>
 					<span class={ tempStyles }>{ this.state.temp }</span>
 				</div>
+				<h2>Upcoming</h2>
 				<div class={ style.details }>
 					<div class= {style.box}>
 						<p>{this.state.hr1}</p>
-						<p><FontAwesomeIcon icon={faSun} /></p>
+						<p>Icon here</p>
 						<p>{this.state.forecastTemp1}</p>
 
 					</div>
 					<div class= {style.box}>
 						<p>{this.state.hr2}</p>
-						<p><FontAwesomeIcon icon={faCloudRain} /></p>
+						<p>Icon here</p>
 						<p>{this.state.forecastTemp2}</p>
 					</div>
 					<div class= {style.box}>
 						<p>{this.state.hr3}</p>
-						<FontAwesomeIcon icon={faMoon} />
+						<p>Icon here</p>
 						<p>{this.state.forecastTemp3}</p>
+					</div>
+				</div>
+				<h2>Details</h2>
+				<div class = {style.info}>
+					<div class = {style.wind}>
+						<p>Icon here</p>
+						<hr/>
+						<div class = {style.index}>
+							<p>Speed</p>
+							<p>{this.state.ws}</p>
+						</div>
+						<hr/>
+						<div class = {style.index}>
+							<p>Direction</p>
+							<p>{this.state.direction}</p>
+						</div>
+					</div>
+					<hr/>
+					<div class = {style.water}>
+						<p>Icon here</p>
+						<hr/>
+						<div class = {style.index}>
+							<p>Pressure</p>
+							<p>{this.state.pres}</p>
+						</div>
+						<hr/>
+						<div class = {style.index}>
+							<p>Huminity</p>
+							<p>{this.state.humi}</p>
+						</div>
 					</div>
 				</div>
 				<div class= { style_iphone.container }> 
@@ -100,12 +141,21 @@ export default class Iphone extends Component {
 		var location = parsed_json['name'];
 		var temp_c = parsed_json['main']['temp'].toFixed();
 		var conditions = parsed_json['weather']['0']['description'];
+		var windspeed = parsed_json['wind']['speed'] + "mph";
+		var windirection = this.getCardinal(Number(parsed_json['wind']['deg']));
+		var pressure = parsed_json['main']['pressure'] + "hPa";
+		var humidity = parsed_json['main']['humidity'] + "%";
+
 
 		// set states for fields so they could be rendered later on
 		this.setState({
 			locate: location,
 			temp: temp_c,
-			cond : conditions
+			cond : conditions,
+			ws: windspeed,
+			direction: windirection,
+			pres: pressure,
+			humi: humidity
 		});      
 	}
 
