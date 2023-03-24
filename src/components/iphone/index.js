@@ -67,6 +67,21 @@ export default class Iphone extends Component {
 	}
 
 
+	// Function to convert wind degree to wind direction
+	getCardinal(angle){
+		
+		const degreePerDirection = 360 / 8;
+		const offsetAngle = angle + degreePerDirection / 2;
+	  
+		return (offsetAngle >= 0 * degreePerDirection && offsetAngle < 1 * degreePerDirection) ? "N"
+		  : (offsetAngle >= 1 * degreePerDirection && offsetAngle < 2 * degreePerDirection) ? "NE"
+			: (offsetAngle >= 2 * degreePerDirection && offsetAngle < 3 * degreePerDirection) ? "E"
+			  : (offsetAngle >= 3 * degreePerDirection && offsetAngle < 4 * degreePerDirection) ? "SE"
+				: (offsetAngle >= 4 * degreePerDirection && offsetAngle < 5 * degreePerDirection) ? "S"
+				  : (offsetAngle >= 5 * degreePerDirection && offsetAngle < 6 * degreePerDirection) ? "SW"
+					: (offsetAngle >= 6 * degreePerDirection && offsetAngle < 7 * degreePerDirection) ? "W"
+					  : "NW";
+	}
 	// the main render method for the iphone component
 	render() {
 		// check if temperature data is fetched, if so add the sign styling to the page
@@ -89,31 +104,63 @@ export default class Iphone extends Component {
 						<div class={ style.conditions }>{ this.state.cond }</div>
 						<span class={ tempStyles }>{ this.state.temp }</span>
 					</div>
+					<h2>Upcoming</h2>
 					<div class={ style.details }>
 						<div class= {style.box}>
 							<p>{this.state.hr1}</p>
 							<p>{this.state.forecastTemp1}</p>
 
-						</div>
-						<div class= {style.box}>
-							<p>{this.state.hr2}</p>
-							<p>{this.state.forecastTemp2}</p>
-						</div>
-						<div class= {style.box}>
-							<p>{this.state.hr3}</p>
-							<p>{this.state.forecastTemp3}</p>
-						</div>
 					</div>
-					<div class= { style_iphone.container }>
-						{ this.state.display ? <Button class={ style_iphone.button } clickFunction={ () => {
-							this.fetchWeatherData();
-							this.fetchForecastData();
-						} }/ > : null
-							}
+					<div class= {style.box}>
+						<p>{this.state.hr2}</p>
+						<p>Icon here</p>
+						<p>{this.state.forecastTemp2}</p>
+					</div>
+					<div class= {style.box}>
+						<p>{this.state.hr3}</p>
+						<p>Icon here</p>
+						<p>{this.state.forecastTemp3}</p>
 					</div>
 				</div>
-			);
-		}
+				<h2>Details</h2>
+				<div class = {style.info}>
+					<div class = {style.wind}>
+						<p>Icon here</p>
+						<hr/>
+						<div class = {style.index}>
+							<p>Speed</p>
+							<p>{this.state.ws}</p>
+						</div>
+						<hr/>
+						<div class = {style.index}>
+							<p>Direction</p>
+							<p>{this.state.direction}</p>
+						</div>
+					</div>
+					<hr/>
+					<div class = {style.water}>
+						<p>Icon here</p>
+						<hr/>
+						<div class = {style.index}>
+							<p>Pressure</p>
+							<p>{this.state.pres}</p>
+						</div>
+						<hr/>
+						<div class = {style.index}>
+							<p>Huminity</p>
+							<p>{this.state.humi}</p>
+						</div>
+					</div>
+				</div>
+				<div class= { style_iphone.container }> 
+					{ this.state.display ? <Button class={ style_iphone.button } clickFunction={ () => {
+						this.fetchWeatherData();
+						this.fetchForecastData();
+						} }/ > : null 
+					}	
+				</div>
+			</div>
+		);
 	}
 
 	parseResponse = (parsed_json) => {
@@ -125,7 +172,11 @@ export default class Iphone extends Component {
 		this.setState({
 			locate: location,
 			temp: temp_c,
-			cond : conditions
+			cond : conditions,
+			ws: windspeed,
+			direction: windirection,
+			pres: pressure,
+			humi: humidity
 		});
 	}
 
@@ -167,5 +218,5 @@ export default class Iphone extends Component {
 			hr3 : hour3
 		});
 	}
-
+	}
 }
