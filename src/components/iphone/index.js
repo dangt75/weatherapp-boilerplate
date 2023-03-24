@@ -51,10 +51,10 @@ export default class Iphone extends Component {
 
 	// Function to convert wind degree to wind direction
 	getCardinal(angle){
-		
+
 		const degreePerDirection = 360 / 8;
 		const offsetAngle = angle + degreePerDirection / 2;
-	  
+
 		return (offsetAngle >= 0 * degreePerDirection && offsetAngle < 1 * degreePerDirection) ? "N"
 		  : (offsetAngle >= 1 * degreePerDirection && offsetAngle < 2 * degreePerDirection) ? "NE"
 			: (offsetAngle >= 2 * degreePerDirection && offsetAngle < 3 * degreePerDirection) ? "E"
@@ -68,7 +68,6 @@ export default class Iphone extends Component {
 	render() {
 		// check if temperature data is fetched, if so add the sign styling to the page
 		const tempStyles = this.state.temp ? `${style.temperature} ${style.filled}` : style.temperature;
-		
 		// display all weather data
 		return (
 			<div class={ style.container }>
@@ -81,25 +80,25 @@ export default class Iphone extends Component {
 				<div class={ style.details }>
 					<div class= {style.box}>
 						<p>{this.state.hr1}</p>
-						<p>Icon here</p>
+						<p><img src={this.state.icon1} alt=""/></p>
 						<p>{this.state.forecastTemp1}</p>
 
 					</div>
 					<div class= {style.box}>
 						<p>{this.state.hr2}</p>
-						<p>Icon here</p>
+						<p><img src={this.state.icon2} alt=""/></p>
 						<p>{this.state.forecastTemp2}</p>
 					</div>
 					<div class= {style.box}>
 						<p>{this.state.hr3}</p>
-						<p>Icon here</p>
+						<p><img src={this.state.icon3} alt=""/></p>
 						<p>{this.state.forecastTemp3}</p>
 					</div>
 				</div>
 				<h2>Details</h2>
 				<div class = {style.info}>
 					<div class = {style.wind}>
-						<p>Icon here</p>
+						<p><img src="../../assets/icons/wind.svg" alt=""/></p>
 						<hr/>
 						<div class = {style.index}>
 							<p>Speed</p>
@@ -113,7 +112,7 @@ export default class Iphone extends Component {
 					</div>
 					<hr/>
 					<div class = {style.water}>
-						<p>Icon here</p>
+						<p><img src="../../assets/icons/raindrop.svg" alt=""/></p>
 						<hr/>
 						<div class = {style.index}>
 							<p>Pressure</p>
@@ -126,12 +125,12 @@ export default class Iphone extends Component {
 						</div>
 					</div>
 				</div>
-				<div class= { style_iphone.container }> 
+				<div class= { style_iphone.container }>
 					{ this.state.display ? <Button class={ style_iphone.button } clickFunction={ () => {
 						this.fetchWeatherData();
 						this.fetchForecastData();
-						} }/ > : null 
-					}	
+						} }/ > : null
+					}
 				</div>
 			</div>
 		);
@@ -155,33 +154,33 @@ export default class Iphone extends Component {
 			ws: windspeed,
 			direction: windirection,
 			pres: pressure,
-			humi: humidity
-		});      
+			humi: humidity,
+		});
 	}
 
 	parseForecastResponse = (parsed_json) => {
 		var foreCast_temp_c1 = parsed_json['list'][1]['main']['temp'].toFixed() + " °";
-		var icon1 = parsed_json['list'][1]['weather']['icon'];
 		var dateTime1 = parsed_json['list'][1]['dt_txt'];
 		var dateArr1 = dateTime1.split(" ");
-		var Arr1 = dateArr1[1].split(":")
-		var hour1 = Arr1[0]
+		var Arr1 = dateArr1[1].split(":");
+		var hour1 = Arr1[0];
+		var icon1 = "http://openweathermap.org/img/w/" + parsed_json['list'][1]['weather'][0]['icon'] + ".png";
+
 
 		var foreCast_temp_c2 = parsed_json['list'][3]['main']['temp'].toFixed() + " °";
-		var icon2 = parsed_json['list'][3]['weather']['icon'];
 		var dateTime2 = parsed_json['list'][3]['dt_txt'];
 		var dateArr2 = dateTime2.split(" ");
-		var Arr2 = dateArr2[1].split(":")
-		var hour2 = Arr2[0]
+		var Arr2 = dateArr2[1].split(":");
+		var hour2 = Arr2[0];
+		var icon2 = "http://openweathermap.org/img/w/" + parsed_json['list'][3]['weather'][0]['icon'] + ".png";
 
 		var foreCast_temp_c3 = parsed_json['list'][5]['main']['temp'].toFixed() + " °";
-		var icon3 = parsed_json['list'][5]['weather']['icon'];
 		var dateTime3 = parsed_json['list'][5]['dt_txt'];
 		var dateArr3 = dateTime3.split(" ");
-		var Arr3 = dateArr3[1].split(":")
-		var hour3 = Arr3[0]
+		var Arr3 = dateArr3[1].split(":");
+		var hour3 = Arr3[0];
+		var icon3 = "http://openweathermap.org/img/w/" + parsed_json['list'][5]['weather'][0]['icon'] + ".png";
 
-		console.log(icon1)
 
 		// set states for fields so they could be rendered later on
 		this.setState({
@@ -194,6 +193,6 @@ export default class Iphone extends Component {
 			icon3: icon3,
 			forecastTemp3: foreCast_temp_c3,
 			hr3 : hour3
-		});      
+		});
 	}
 }
