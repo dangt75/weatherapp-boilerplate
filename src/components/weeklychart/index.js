@@ -13,21 +13,21 @@ import codes from '../../assets/wmocodes.json';
 
 export default class WeeklyChart extends Component {
 
-	constructor(){
+	constructor(props){
 		super();
-		this.state.display=true;
-		this.state.temp = "";
-		this.state.days = [];
-		this.state.avgt = [];
-		this.state.avgc = [];
-		this.state.avgp = [];
+		this.setState({display:true});
+		this.setState({temp:""});
+		this.setState({days:[]});
+		this.setState({avgt:[]});
+		this.setState({avgc:[]});
+		this.setState({avgp:[]});
 		//this.parseWeeklyResponse(data);
 	}
 
 	fetchWeeklyData = () => {
 		// API URL with a structure of : ttp://api.wunderground.com/api/key/feature/q/country-code/city.json
 		var newurl="https://api.open-meteo.com/v1/forecast?latitude=39.1&longitude=-84.51&forecast_days=8&hourly=weathercode&daily=temperature_2m_max,temperature_2m_min,rain_sum&timezone=auto";
-
+		console.log(this.other.state.location);
 		$.ajax({
 			url: newurl,
 			dataType: "json",

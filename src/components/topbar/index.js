@@ -54,6 +54,8 @@ export default class TopBar extends Component {
 						<li class={style.brand}><a href="#">Farmy</a></li>
 						<li><a onClick={() => this.changePage("main")} href='/index'>Today</a></li>
 						<li><a onClick={() => this.changePage("weekly")} href='/weekly'>Weekly</a></li>
+						{/*<li><a onClick={() => this.changePage("alerts")} href='javascript:void(0)'>Alerts</a></li>*/}
+						<li><a onClick={() => this.changePage("settings")} href='/settings'>Settings</a></li>
 					</ul>
 					</nav>
 				</div>
