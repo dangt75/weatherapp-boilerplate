@@ -17,7 +17,7 @@ export default class TopBar extends Component {
 		this.state={location: "Main Plot"};
 	}
 
-	//it's self-evident what these functions do
+	//it's self-evident what these functions do, being that they simply change the states
 	openMenu = () => {
 		this.setState({menu:true});
 	}
@@ -43,6 +43,9 @@ export default class TopBar extends Component {
 	// rendering a sidebar and location picker
 	//first is navigation, with a button that opens the sidebar, and then links, and a button to close it
 	//after that is a location display with a dropdown button, with a list of other locations to pick. picked locations update the display
+	//important note is for the classnames in a few elements, what it does is allow multiple classnames for elements for dynamic styling
+	//their presence is determined by state variables, allowing for a dynamic UI
+	//and finally at the bottom is the location picker and the choice of locations. clicking on them passes their location to change the state variable for location
 	render() {
 		return (
 			<div class={style.header}>

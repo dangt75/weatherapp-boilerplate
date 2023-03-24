@@ -90,6 +90,9 @@ export default class Iphone extends Component {
 		}
 		else{
 			// display all weather data
+			//three divs for three forecast times
+			//after that is dtails for other weather data
+			//and at the bottom is the button to call the data to be displayed
 			return (
 				<div class={ style.container }>
 					<TopBar/>
@@ -159,7 +162,7 @@ export default class Iphone extends Component {
 			);
 		}
 	}
-
+	//parses retrieved json and adds data to component state
 		parseResponse = (parsed_json) => {
 			var location = parsed_json['name'];
 			var temp_c = parsed_json['main']['temp'].toFixed();
@@ -181,7 +184,7 @@ export default class Iphone extends Component {
 				humi: humidity,
 			});
 		}
-
+		//same as parseResponse but for separate forecast data
 		parseForecastResponse = (parsed_json) => {
 			// Forecast next 6 hours
 			var foreCast_temp_c1 = parsed_json['list'][1]['main']['temp'].toFixed() + " °";

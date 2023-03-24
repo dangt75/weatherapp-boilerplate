@@ -4,15 +4,15 @@ import { h, render, Component } from 'preact';
 import weeklystyle from './style';
 //import classnames utility
 import classNames from 'classnames';
-//import fake data
-import data from '../../assets/weeklydata.json';
+//import button component and style for it
 import Button from '../button';
 import style_iphone from '../button/style_iphone';
 import $ from 'jquery';
+//import WMO weather codes for openmeteo interpretation
 import codes from '../../assets/wmocodes.json';
 
 export default class WeeklyChart extends Component {
-
+	//constructor to declare states before definition
 	constructor(){
 		super();
 		this.setState({display:true});
@@ -37,11 +37,12 @@ export default class WeeklyChart extends Component {
 		// once the data grabbed, hide the button
 		this.setState({ display: false });
 	}
-
+	//parses json from fetchweatherdata
 	parseWeeklyResponse = (parsed_json) => {
 		var weekday=["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
 		var tday = (new Date).getDay();
 		var weekdays=[];
+		//gets midday hours for the next 7 days for average weather conditions
 		var hours = [13];
 		for(let i=0; i<7; i++){
 			hours.push(hours[hours.length-1]+24);
@@ -51,13 +52,14 @@ export default class WeeklyChart extends Component {
 		var precipitation = [];
 		//currently rain level is calculated into discrete values, 0 to 10
 		for(let i=0; i<8; i++){
+			//loops to calculate average of all required stats and pushed them to arrays
 			let tmx=parsed_json["daily"]["temperature_2m_max"][i]
 			let tmn=parsed_json["daily"]["temperature_2m_min"][i]
 			let tavg=Math.round((tmx+tmn)/2)
 			avgtemp.push(tavg);
 			conditions.push(parsed_json["hourly"]["weathercode"][hours[i]]);
+			//rounds the rain levels into discrete bands for easier displaying
 			let x = Math.round(parsed_json["daily"]["rain_sum"][i])
-			//change to maths limiting later
 			if (x>10){
 				x=10;
 			}
@@ -65,15 +67,13 @@ export default class WeeklyChart extends Component {
 			weekdays.push(weekday[tday])
 			tday=(tday+1)%7
 		}
-		console.log(conditions);
-		//ugly, refactor later
 		var classes=[weeklystyle.zero,weeklystyle.one,weeklystyle.two,weeklystyle.three,weeklystyle.four,weeklystyle.five,weeklystyle.six,weeklystyle.seven,weeklystyle.eight,weeklystyle.nine,weeklystyle.ten];
 		var padding=[];
 		for(let i=0; i<precipitation.length; i++){
 			padding.push(classes[precipitation[i]]);
 		}
 
-		// set states for fields so they could be rendered later on
+		// set states for fields so they could be rendered later on, containing arrays of weather conditions
 		this.setState({
 			days: weekdays,
 			avgt: avgtemp,
@@ -83,6 +83,7 @@ export default class WeeklyChart extends Component {
 	}
 
 	render(){
+		//button to render weather data, doesn't display component till data is fetched
 		if(this.state.display){
 			return(
 				<div class={style_iphone.container}>
@@ -91,6 +92,11 @@ export default class WeeklyChart extends Component {
 			);
 		}
 		else{
+			//consists of many divs, styled in separate containers to layout as infographic
+			//essentially a crude table, but still does what it's supposed to
+			//only expanation needed is for cond, the div which retrieves appropriate icon by looking for the icon in assets folder with matching weather code
+			//classname is also present here to combine styling with "alt", for alternate bands to distinguish columns
+			//and uses dynamic classing from average rainfall to determine vertical position of element on "chart"
 			return(
 				<div class={weeklystyle.container}>
 					<div class={weeklystyle.days}>
