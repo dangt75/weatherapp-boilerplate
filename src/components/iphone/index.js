@@ -71,14 +71,16 @@ export default class Iphone extends Component {
 		
 		// display all weather data
 		return (
+			// JSX elements for all files
 			<div class={ style.container }>
 				<div class={ style.header }>
 					<div class={ style.city }>{ this.state.locate }</div>
 					<div class={ style.conditions }>{ this.state.cond }</div>
 					<span class={ tempStyles }>{ this.state.temp }</span>
 				</div>
-				<h2>Upcoming</h2>
-				<div class={ style.details }>
+
+			    <h2>Upcoming</h2>
+			    <div class={ style.details }>
 					<div class= {style.box}>
 						<p>{this.state.hr1}</p>
 						<p>Icon here</p>
