@@ -82,15 +82,6 @@ export default class WeeklyChart extends Component {
 		});
 	}
 
-	//TODO
-	//container is full width, flex row
-	//days and main are flex column of equal percent (12.5%)
-	//alt has color overlay
-	//reading must use position bottom depending on avgp
-	//considering rules 0-100 in intervals of 10, formatting data in parse
-	//easiest way, actual rules in hard way
-	//only do hard way if plenty of time
-	//worst comes to worst, fake static element from figma
 	render(){
 		if(this.state.display){
 			return(
@@ -113,31 +104,31 @@ export default class WeeklyChart extends Component {
 					</div>
 					<div class={weeklystyle.main}>
 						<div class={classNames(weeklystyle.reading,[`${this.state.avgp[0]}`])}>
-							<div class={weeklystyle.cond}><img src={'../../assets/icons/'+this.state.avgc[0]+'.png'}></img></div>
+							<div class={weeklystyle.cond}><img src={'../../assets/icons/'+this.state.avgc[0]+'.svg'}></img></div>
 							<div class={weeklystyle.temp}>{this.state.avgt[0]+" °"}</div>
 						</div>
 						<div class={classNames(weeklystyle.reading,weeklystyle.alt,[`${this.state.avgp[1]}`])}>
-							<div class={weeklystyle.cond}><img src={'../../assets/icons/'+this.state.avgc[1]+'.png'}></img></div>
+							<div class={weeklystyle.cond}><img src={'../../assets/icons/'+this.state.avgc[1]+'.svg'}></img></div>
 							<div class={weeklystyle.temp}>{this.state.avgt[1]+" °"}</div>
 						</div>
 						<div class={classNames(weeklystyle.reading,[`${this.state.avgp[2]}`])}>
-							<div class={weeklystyle.cond}><img src={'../../assets/icons/'+this.state.avgc[2]+'.png'}></img></div>
+							<div class={weeklystyle.cond}><img src={'../../assets/icons/'+this.state.avgc[2]+'.svg'}></img></div>
 							<div class={weeklystyle.temp}>{this.state.avgt[2]+" °"}</div>
 						</div>
 						<div class={classNames(weeklystyle.reading,weeklystyle.alt,[`${this.state.avgp[3]}`])}>
-							<div class={weeklystyle.cond}><img src={'../../assets/icons/'+this.state.avgc[3]+'.png'}></img></div>
+							<div class={weeklystyle.cond}><img src={'../../assets/icons/'+this.state.avgc[3]+'.svg'}></img></div>
 							<div class={weeklystyle.temp}>{this.state.avgt[3]+" °"}</div>
 						</div>
 						<div class={classNames(weeklystyle.reading,[`${this.state.avgp[4]}`])}>
-							<div class={weeklystyle.cond}><img src={'../../assets/icons/'+this.state.avgc[4]+'.png'}></img></div>
+							<div class={weeklystyle.cond}><img src={'../../assets/icons/'+this.state.avgc[4]+'.svg'}></img></div>
 							<div class={weeklystyle.temp}>{this.state.avgt[4]+" °"}</div>
 						</div>
 						<div class={classNames(weeklystyle.reading,weeklystyle.alt,[`${this.state.avgp[5]}`])}>
-							<div class={weeklystyle.cond}><img src={'../../assets/icons/'+this.state.avgc[5]+'.png'}></img></div>
+							<div class={weeklystyle.cond}><img src={'../../assets/icons/'+this.state.avgc[5]+'.svg'}></img></div>
 							<div class={weeklystyle.temp}>{this.state.avgt[5]+" °"}</div>
 						</div>
 						<div class={classNames(weeklystyle.reading,[`${this.state.avgp[6]}`])}>
-							<div class={weeklystyle.cond}><img src={'../../assets/icons/'+this.state.avgc[6]+'.png'}></img></div>
+							<div class={weeklystyle.cond}><img src={'../../assets/icons/'+this.state.avgc[6]+'.svg'}></img></div>
 							<div class={weeklystyle.temp}>{this.state.avgt[6]+" °"}</div>
 						</div>
 					</div>
