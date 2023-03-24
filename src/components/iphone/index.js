@@ -1,5 +1,5 @@
 // import preact
-import { h, render, Component } from 'preact';
+import { h, render, Component, createRef } from 'preact';
 // import stylesheets for ipad & button
 import style from './style';
 import style_iphone from '../button/style_iphone';
@@ -13,6 +13,7 @@ import codes from '../../assets/wmocodes.json';
 import TopBar from '../topbar';
 //import weekly page element
 import WeeklyChart from '../weeklychart';
+import { create } from 'core-js/core/object';
 
 export default class Iphone extends Component {
 //var Iphone = React.createClass({
@@ -22,7 +23,7 @@ export default class Iphone extends Component {
 		const urlBar = window.location.href;
 		super(props);
 		// temperature state
-		this.state.temp = "";
+		this.setState({temp : ""});
 		// button display state
 		this.setState({ display: true });
 		if(urlBar.includes("weekly")){
@@ -31,11 +32,13 @@ export default class Iphone extends Component {
 		else{
 			this.setState({page:"main"});
 		}
+		this.location=createRef();
 	}
 
 	fetchWeatherData = () => {
 		// API URL with a structure of : ttp://api.wunderground.com/api/key/feature/q/country-code/city.json
-		var url = "http://api.openweathermap.org/data/2.5/weather?q=Manchester&units=metric&APPID=3433317211f5f05d30c5f4a41a16cd4e";
+		var url = "http://api.openweathermap.org/data/2.5/weather?q="+this.location.current.state.location+"&units=metric&APPID=3433317211f5f05d30c5f4a41a16cd4e";
+		console.log(this.location.current.state.location);
 		$.ajax({
 			url: url,
 			dataType: "jsonp",
@@ -66,7 +69,7 @@ export default class Iphone extends Component {
 		if(this.state.page=="weekly"){
 			return(
 				<div class={style.container}>
-					<TopBar/>
+					<TopBar ref={this.location}/>
 					<WeeklyChart/>
 				</div>
 			);
@@ -75,7 +78,7 @@ export default class Iphone extends Component {
 			// display all weather data
 			return (
 				<div class={ style.container }>
-					<TopBar/>
+					<TopBar ref={this.location}/>
 					<div class={ style.header }>
 						<div class={ style.city }>{ this.state.locate }</div>
 						<div class={ style.conditions }>{ this.state.cond }</div>

@@ -79,7 +79,7 @@
     "caniuse-db": "^1.0.30001467",
     "classname": "^0.0.0",
     "classnames": "^2.3.2",
-    "preact": "^6.0.0",
+    "preact": "^10.13.1",
     "preact-compat": "^3.0.0",
     "preact-router": "^2.0.0",
     "promise-polyfill": "^6.0.2",

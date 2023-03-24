@@ -70,9 +70,9 @@ export default class TopBar extends Component {
 					</div>
 
 					<ul class={classNames(style.locul,{[`${style.loculopen}`] : this.state.loc})} id={style.locations}>
-						<li><a class={style.loca} onClick={() => this.changeLoc("loc1")} href='javascript:void(0)'>loc1</a></li>
-						<li><a class={style.loca} onClick={() => this.changeLoc("loc2")} href='javascript:void(0)'>loc2</a></li>
-						<li><a class={style.loca} onClick={() => this.changeLoc("loc3")} href='javascript:void(0)'>loc3</a></li>
+						<li><a class={style.loca} onClick={() => this.changeLoc("London")} href='javascript:void(0)'>London</a></li>
+						<li><a class={style.loca} onClick={() => this.changeLoc("Manchester")} href='javascript:void(0)'>Manchester</a></li>
+						<li><a class={style.loca} onClick={() => this.changeLoc("Liverpool")} href='javascript:void(0)'>Liverpool</a></li>
 					</ul>
 				</div>
 			</div>
