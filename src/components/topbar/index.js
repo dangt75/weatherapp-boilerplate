@@ -14,7 +14,7 @@ export default class TopBar extends Component {
 		//determines location dropdown presence
 		this.state={loc:false};
 		//determines location selected
-		this.state={location: "Ohio"};
+		this.state={location: "Main Plot"};
 	}
 
 	//it's self-evident what these functions do
@@ -70,9 +70,9 @@ export default class TopBar extends Component {
 					</div>
 
 					<ul class={classNames(style.locul,{[`${style.loculopen}`] : this.state.loc})} id={style.locations}>
-						<li><a class={style.loca} onClick={() => this.changeLoc("London")} href='javascript:void(0)'>London</a></li>
-						<li><a class={style.loca} onClick={() => this.changeLoc("Manchester")} href='javascript:void(0)'>Manchester</a></li>
-						<li><a class={style.loca} onClick={() => this.changeLoc("Liverpool")} href='javascript:void(0)'>Liverpool</a></li>
+						<li><a class={style.loca} onClick={() => this.changeLoc("Carrots")} href='javascript:void(0)'>Carrots</a></li>
+						<li><a class={style.loca} onClick={() => this.changeLoc("Barley")} href='javascript:void(0)'>Barley</a></li>
+						<li><a class={style.loca} onClick={() => this.changeLoc("Apples")} href='javascript:void(0)'>Apples</a></li>
 					</ul>
 				</div>
 			</div>
